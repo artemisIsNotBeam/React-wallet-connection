@@ -7,19 +7,18 @@ import Interactions from './Interactions';
 const Wallet = () => {
 
 	// ganache-cli address
-	const contractAddress = '0xC141334a57DDd61Dda76A0dA32fe750E7Cb7f81B';
+	const contractAddress = '';
 
-	const [tokenName, setTokenName] = useState("Token");
+	const [tokenName] = useState("Token");
 	const [connButtonText, setConnButtonText] = useState("Connect Wallet");
-	const [errorMessage, setErrorMessage] = useState(null);
+	const [setErrorMessage] = useState(null);
 	const [defaultAccount, setDefaultAccount] = useState(null);
-	const [balance, setBalance] = useState(null);
 
-	const [provider, setProvider] = useState(null);
-	const [signer, setSigner] = useState(null);
-	const [contract, setContract] = useState(null);
+	const [setProvider] = useState(null);
+	const [setSigner] = useState(null);
+	const [setContract] = useState(null);
 
-
+	// remeber temp provider is it
 	const connectWalletHandler = () => {
 		if (window.ethereum && window.ethereum.isMetaMask) {
 
@@ -56,27 +55,8 @@ const Wallet = () => {
 		setContract(tempContract);
 	}
 
-	useEffect(() => {
-		if (contract != null) {
-			updateBalance();
-			updateTokenName();
-		}
-	}, [contract])
-
-	const updateBalance = async () => {
-		let balanceBigN = await contract.balanceOf(defaultAccount);
-		let balanceNumber = balanceBigN.toNumber();
-
-		let decimals = await contract.decimals();
-
-		let tokenBalance = balanceNumber / Math.pow(10, decimals);
-
-		setBalance(tokenBalance);
-		console.log(tokenBalance);
-	}
-
-	const updateTokenName = async () => {
-		setTokenName(await contract.name());
+	const Runcontract = function(address, contractABI){
+		console.log("hiiiiii")
 	}
 	
 return (
@@ -88,13 +68,7 @@ return (
 			<div>
 				<h3>Address: {defaultAccount}</h3>
 			</div>
-			<div>
-				<h3>{tokenName} Balance: {balance}</h3>
-			</div>
-			{errorMessage}
-			</div>
-
-			<Interactions contract={contract}/>
+		</div>
 	</div>
 	);
 }
