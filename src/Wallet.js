@@ -9,6 +9,7 @@ const Wallet = () => {
 	// ganache-cli address
 	const contractAddress = '';
 
+	const web3 = useState(null);
 	const [tokenName] = useState("Token");
 	const [connButtonText, setConnButtonText] = useState("Connect Wallet");
 	const [setErrorMessage] = useState(null);
@@ -45,6 +46,7 @@ const Wallet = () => {
 
 	const updateEthers = () => {
 		let tempProvider = new ethers.providers.Web3Provider(window.ethereum);
+		web3 = tempProvider;
 
 		let tempSigner = tempProvider.getSigner();
 
