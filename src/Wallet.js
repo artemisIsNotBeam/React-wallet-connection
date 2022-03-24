@@ -59,6 +59,11 @@ const Wallet = () => {
 
 	const Runcontract = function(address, contractABI){
 		console.log("hiiiiii")
+		if(web3 != null){
+			alert("need to conenct wallet First");
+		} else {
+			console.log("contract looool");
+		}
 	}
 	
 return (
